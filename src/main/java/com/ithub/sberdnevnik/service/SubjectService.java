@@ -1,11 +1,13 @@
 package com.ithub.sberdnevnik.service;
 
 import com.ithub.sberdnevnik.models.Diary;
+import com.ithub.sberdnevnik.models.StudentClass;
 import com.ithub.sberdnevnik.models.Subject;
 import com.ithub.sberdnevnik.repository.DiaryRepository;
 import com.ithub.sberdnevnik.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Optional;
 
 public class SubjectService {
@@ -19,5 +21,8 @@ public class SubjectService {
         else {
             throw new Exception("Предмет не найден");
         }
+    }
+    public List<Subject> loadDiaries() {
+        return subjectRepository.findAll();
     }
 }

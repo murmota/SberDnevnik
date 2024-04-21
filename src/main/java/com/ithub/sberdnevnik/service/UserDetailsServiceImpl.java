@@ -1,6 +1,7 @@
 package com.ithub.sberdnevnik.service;
 
 import com.ithub.sberdnevnik.models.AppUser;
+import com.ithub.sberdnevnik.models.StudentClass;
 import com.ithub.sberdnevnik.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -9,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,5 +37,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             return new String[]{"USER"};
         }
         return user.getRole().split(",");
+    }
+    public List<AppUser> loadDiaries() {
+        return repository.findAll();
     }
 }

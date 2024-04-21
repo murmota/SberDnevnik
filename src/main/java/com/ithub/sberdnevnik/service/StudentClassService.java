@@ -1,5 +1,6 @@
 package com.ithub.sberdnevnik.service;
 
+import com.ithub.sberdnevnik.models.Diary;
 import com.ithub.sberdnevnik.models.Student;
 import com.ithub.sberdnevnik.models.StudentClass;
 import com.ithub.sberdnevnik.repository.DiaryRepository;
@@ -7,6 +8,7 @@ import com.ithub.sberdnevnik.repository.StudentClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,5 +23,8 @@ public class StudentClassService {
         else {
             throw new Exception("Класс не найден");
         }
+    }
+    public List<StudentClass> loadDiaries() {
+        return studentClassRepository.findAll();
     }
 }

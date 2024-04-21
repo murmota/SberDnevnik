@@ -29,9 +29,12 @@ public class RegistrationController {
     @Autowired
     private JwtCore jwtCore;
     @PostMapping("/signup")
-    public AppUser createUser(@RequestBody AppUser user) {
+    public ResponseEntity<?> createUser(@RequestBody AppUser user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return myUserRepository.save(user);
+        Optional<AppUser> userExists = myUserRepository.findByUsername(user.getUsername());
+        if (userExists.isEmpty()) return ResponseEntity.ok(myUserRepository.save(user));
+        return ResponseEntity.ok("Такой пользователь уже существует");
+
     }
     @PostMapping("/signin")
     public ResponseEntity<?> login(@RequestBody SigninRequest request) {
